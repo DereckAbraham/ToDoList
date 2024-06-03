@@ -19,6 +19,6 @@ let tareas = [
         id: 4,
         texto: "Identificar Componentes",
     }
-]
+];
 
 export { tareas };

@@ -6,17 +6,30 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/config.css">
-
-
 </head>
 <body>
-    
-    <main class="root" id="root">
-        <div class="botones"></div>
-        <div class="list_tareas"></div>
-        <div class="formulario"></div>
-    </main>
-
+    <section class="todo">
+        <h2>To Do List</h2>
+        <div class="input">
+          <input
+            type="text"
+            class="input-field"
+            id="todoInput"
+            placeholder="Agregar Nueva Tarea"
+          />
+          <button class="btn">Agregar</button>
+        </div>
+        <ul class="scroll">
+          <li id="todoList"></li>
+        </ul>
+        <div>
+          <hr class="counter" />
+          <div class="counter-container">
+            <p><span id="todoCount">0</span> pendientes</p>
+            <button id="deleteButton">Borrar Todo</button>
+          </div>
+        </div>
+      </section>
     <script src="./js/main.js" type="module"></script>
 </body>
 </html>

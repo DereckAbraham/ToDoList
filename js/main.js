@@ -1,46 +1,83 @@
-import { tareas } from './data_todo.js' 
+import { tareas } from './data_todo.js'; 
 
-function cargar_tareas (){
-    let cuadros_tareas = document.querySelector(".list_tareas")
+const todoInput = document.getElementById("todoInput");
+const todoList = document.getElementById("todoList");
+const todoCount = document.getElementById("todoCount");
+const addButton = document.querySelector(".btn");
+const deleteButton = document.getElementById("deleteButton");
 
-    tareas.forEach((cada_tarea)=> {
+let todo = []; 
 
-        let div_tarea =document.createElement("div")
-        div_tarea.classList.add("div_tareas")
-        if (cada_tarea.estado){
-            div_tarea.innerHTML = `
-            <p class="texto">${cada_tarea.texto}</p>
-            <div class="estado">[/]</div>
-            `;
-        }else {
-            div_tarea.innerHTML = `
-            <p class="texto">${cada_tarea.texto}</p>
-            <div class="estado">[X]</div>
-            `;
-        }
+document.addEventListener("DOMContentLoaded", function () {
+  addButton.addEventListener("click", addTask);
+  todoInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addTask();
+    }
+  });
+  deleteButton.addEventListener("click", deleteAllTasks);
+  loadTasks(); 
+  displayTasks(); 
+});
 
-        cuadros_tareas.appendChild(div_tarea)
-    })
+function loadTasks() {
+  todo = tareas.map(tarea => ({
+      text: tarea.texto,
+      disabled: !tarea.estado
+  }));
 }
 
-cargar_tareas()
-
-function cargar_botones () {
-    let caja_btn = document.querySelector(".botones");
-
-    caja_btn.innerHTML = `<div class="btn_mas"> + </div>`
+function addTask() {
+  const newTask = todoInput.value.trim();
+  if (newTask !== "") {
+    todo.push({ text: newTask, disabled: false });
+    todoInput.value = "";
+    displayTasks();
+  }
 }
 
-cargar_botones()
+function displayTasks() {
+  todoList.innerHTML = "";
+  todo.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.className = "todo-item";
 
-function cargar_formulario () {
-    let ventana_formulario = document.querySelector(".formulario")
-    ventana_formulario.classList.add("activar_b")
-    ventana_formulario.innerHTML = `
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "todo-checkbox";
+    checkbox.checked = item.disabled;
+    checkbox.addEventListener("change", () => toggleTask(index));
 
-    `
+    const text = document.createElement("span");
+    text.textContent = item.text;
+    text.className = item.disabled ? "text disabled" : "text";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Eliminar";
+    deleteBtn.className = "delete-btn";
+    deleteBtn.addEventListener("click", () => deleteTask(index));
+
+    li.appendChild(checkbox);
+    li.appendChild(text);
+    li.appendChild(deleteBtn);
+
+    todoList.appendChild(li);
+  });
+  todoCount.textContent = `${todo.length} pendientes`;
 }
 
+function toggleTask(index) {
+  todo[index].disabled = !todo[index].disabled;
+  displayTasks();
+}
 
-let btn_formulario = document.querySelector(".btn_mas")
-btn_formulario.addEventListener("click", cargar_formulario)
+function deleteTask(index) {
+  todo.splice(index, 1); 
+  displayTasks(); 
+}
+
+function deleteAllTasks() {
+  todo = [];
+  displayTasks();
+}

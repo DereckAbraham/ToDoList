@@ -1,68 +1,204 @@
-.root {
-    width: 30rem;
+section {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
     margin: auto;
-    margin-top: 10rem;
 }
-.div_tareas {
-    width: 100%;
-    height: 6rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 2rem;
 
-    display: flex;
-    justify-content: space-between;
+.btn {
+  font-size: 1.1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.3rem;
+  background-color: gainsboro;
+  border: none;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
-.botones {
-    width: 100%;
-    display: flex;
-    justify-content: end;
+.btn:hover {
+  background-color: cadetblue; 
+  transition: 0.6s; 
 }
-.btn_mas {
-    width: 5rem;
-    height: 5rem;
-    background-color: rgb(4, 155, 255);
-    color: white;
-    font-size: 4rem;
-    font-weight: 900;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.btn_mas:hover {
-    font-size: 4.5rem;
-    transition: 0.3s;
 
+
+/* Todo Container */
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 2rem;
+  background-color: whitesmoke;
+  padding: 3rem;
+  height: 50%;
+  width: 60%;
+  box-shadow: 0 1rem 3rem 1rem rgba(0, 23, 71, 0.15);
+  max-width: 30rem;
 }
-.list_tareas {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
+
+h2 {
+  text-transform: uppercase;
+  height: 3rem;
+  color: cadetblue;
+  text-align: center;
 }
-.formulario {
-    width: 100%;
-    height: 100vmax;
-    background-color: rgba(168, 168, 168, 0.563);
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
+
+.input {
+  position: relative;
+  display: flex;
 }
-.ocultar{
-    display: none;
+
+
+.input-field {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  font-size: 1rem;
 }
-.activar_b {
-    display: block;
+
+.input-field {
+  background-color: white; /* Color de fondo */
+  border: 2px solid red; /* Inicializa el borde con color rojo */
+  animation: rgb-border 3s infinite linear; /* Aplica la animación */
 }
-.activar_f {
-    display: flex;
+
+@keyframes rgb-border {
+  0% { border-color: red; }
+  33% { border-color: green; }
+  66% { border-color: blue; }
+  100% { border-color: red; }
 }
-.activar_g {
-    display: grid;
+
+
+input[type="text"]::placeholder {
+  color: gray;
 }
+
+.todo-container {
+  display: flex;
+  gap: 1rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.3rem;
+}
+
+#todoList p {
+  display: flex;
+  gap: 1rem;
+  color: black;
+  align-items: center;
+}
+
+#todoList .disabled {
+  color: cadetblue;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]::before {
+  content: "\2000";
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border: 0.06rem solid black;
+  border-radius: 50%;
+}
+
+input[type="checkbox"]:checked::before {
+  color: white;
+  background-color: cadetblue;
+  border-radius: 50%;
+}
+
+.counter {
+  border: 0.06rem solid gray;
+}
+
+.counter-container {
+  margin-top: 1rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter-container p {
+  align-self: center;
+}
+
+.counter-container button {
+  width: 10rem;
+  border: none;
+  background-color: gainsboro;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.counter-container button:hover{
+  background-color: rgba(254, 108, 108, 0.326);
+  transition: 0.5s;
+}
+
+.scroll {
+  height: 15rem;
+  scrollbar-width: thin;
+}
+
+.delete-btn {
+  padding: 5px 10px;
+  margin-left: 10px;
+  background-color: #ff4d4d; /* Rojo claro para indicar acción de eliminar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #ff0000; /* Rojo más oscuro para el efecto hover */
+}
+
+.delete-btn:active {
+  transform: translateY(1px);
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.todo-checkbox {
+  margin-right: 10px;
+}
+
+.text {
+  flex-grow: 1;
+}
+
+.text.disabled {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+
+
